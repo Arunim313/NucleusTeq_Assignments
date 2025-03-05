@@ -25,7 +25,6 @@ const winnerMessage = document.getElementById('winner-message');
 const playAgainBtn = document.getElementById('play-again-btn');
 const diceDots = Array.from(document.querySelectorAll('.dice-dot'));
 
-// Initialize game
 function init() {
     scores = [0, 0];
     currentScore = 0;
@@ -43,49 +42,50 @@ function init() {
     messageElement.textContent = '';
     winnerModal.style.display = 'none';
     
-    // Hide all dice dots initially
     updateDiceDisplay(1);
     hideDice();
+
+    player1Name.disabled = false;
+    player2Name.disabled = false;
+
+    editPlayer1Btn.style.display = 'inline-block';
+    editPlayer2Btn.style.display = 'inline-block';
 }
 
-// Roll the dice
+
+function resetGame() {
+    init();
+}
+
 function rollDice() {
     if (!gameActive) return;
     
-    // Generate random dice number
     const dice = Math.floor(Math.random() * 6) + 1;
-    
-    // Animate dice roll
+
     diceElement.classList.add('roll-animation');
     hideDice();
     
     setTimeout(() => {
-        // Show the dice with correct dots
         updateDiceDisplay(dice);
         diceElement.classList.remove('roll-animation');
-        
-        // Update current score if dice is not 1
+
         if (dice !== 1) {
             currentScore += dice;
             document.getElementById(`player${activePlayer + 1}-current-score`).textContent = currentScore;
             messageElement.textContent = `Rolled a ${dice}!`;
         } else {
-            // If dice is 1, lose current score and switch player
             messageElement.textContent = 'Oops! Rolled a 1 - turn lost!';
             switchPlayer();
         }
-    }, 800); // Wait for animation to complete
+    }, 800);
 }
 
-// Save current score
 function saveScore() {
     if (!gameActive || currentScore === 0) return;
-    
-    // Add current score to player's saved score
+
     scores[activePlayer] += currentScore;
     document.getElementById(`player${activePlayer + 1}-saved-score`).textContent = scores[activePlayer];
-    
-    // Check if player won
+
     if (scores[activePlayer] >= 100) {
         gameActive = false;
         const winnerName = document.getElementById(`player${activePlayer + 1}-name`).value;
@@ -93,35 +93,29 @@ function saveScore() {
         winnerModal.style.display = 'flex';
         messageElement.textContent = '';
     } else {
-        // Switch to other player
         messageElement.textContent = 'Score saved!';
         switchPlayer();
     }
+
+    // Hiding name edir buttons when the game starts
+    editPlayer1Btn.style.display = 'none';
+    editPlayer2Btn.style.display = 'none';
 }
 
-// Switch active player
 function switchPlayer() {
-    // Reset current score
     currentScore = 0;
     document.getElementById(`player${activePlayer + 1}-current-score`).textContent = '0';
     
-    // Switch active player
     activePlayer = activePlayer === 0 ? 1 : 0;
     
-    // Update UI to show active player
     player1Element.classList.toggle('active');
     player2Element.classList.toggle('active');
-    
-    // Hide dice when switching players
     hideDice();
 }
 
-// Update dice display
 function updateDiceDisplay(value) {
-    // Hide all dots first
     diceDots.forEach(dot => dot.style.opacity = '0');
-    
-    // Show specific dots based on dice value
+
     switch(value) {
         case 1:
             document.getElementById('dot5').style.opacity = '1'; // Center
@@ -159,27 +153,23 @@ function updateDiceDisplay(value) {
     }
 }
 
-// Hide dice by setting all dots to opacity 0
 function hideDice() {
     diceDots.forEach(dot => dot.style.opacity = '0');
 }
 
-// Handle name editing
 function handleNameEdit(inputElement) {
     inputElement.focus();
     inputElement.select();
 }
 
-// Event listeners
 rollBtn.addEventListener('click', rollDice);
 saveBtn.addEventListener('click', saveScore);
-resetBtn.addEventListener('click', init);
-playAgainBtn.addEventListener('click', init);
+resetBtn.addEventListener('click', resetGame);
+playAgainBtn.addEventListener('click', resetGame);
 
 editPlayer1Btn.addEventListener('click', () => handleNameEdit(player1Name));
 editPlayer2Btn.addEventListener('click', () => handleNameEdit(player2Name));
 
-// Prevent form submission when pressing enter in name inputs
 player1Name.addEventListener('keydown', function(e) {
     if (e.key === 'Enter') {
         e.preventDefault();
@@ -194,5 +184,4 @@ player2Name.addEventListener('keydown', function(e) {
     }
 });
 
-// Initialize the game when the page loads
 document.addEventListener('DOMContentLoaded', init);
