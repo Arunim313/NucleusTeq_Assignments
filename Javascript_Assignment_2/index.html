@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Start Screen -->
+        <div id="start-screen" class="screen active">
+            <h1>Quiz Game</h1>
+            <div class="form-group">
+                <label for="player-name">Your Name:</label>
+                <input type="text" id="player-name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <label for="category">Select Category:</label>
+                <select id="category">
+                    <option value="9">General Knowledge</option>
+                    <option value="17">Science & Nature</option>
+                    <option value="18">Computers</option>
+                    <option value="19">Mathematics</option>
+                    <option value="21">Sports</option>
+                    <option value="22">Geography</option>
+                    <option value="23">History</option>
+                    <option value="24">Politics</option>
+                    <option value="27">Animals</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="difficulty">Select Difficulty:</label>
+                <select id="difficulty">
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+            </div>
+            <button id="start-btn">Start Game</button>
+        </div>
+        
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen">
+            <div id="loader" class="loader"></div>
+            <div id="game-content" style="display: none;">
+                <div class="game-header">
+                    <div class="player-info">
+                        <span id="player-name-display">Player</span>
+                    </div>
+                    <div class="score-container">
+                        Score: <span id="current-score">0</span>/<span id="total-questions">0</span>
+                    </div>
+                    <div class="question-counter">
+                        Question: <span id="current-question">1</span>/<span id="total-questions-counter">0</span>
+                    </div>
+                </div>
+                <div class="timer">
+                    <div class="timer-bar" id="timer-bar"></div>
+                </div>
+                <div id="question" class="question"></div>
+                <div id="options" class="options"></div>
+                <div id="feedback" class="feedback" style="display: none;"></div>
+            </div>
+        </div>
+        
+        <!-- End Screen -->
+        <div id="end-screen" class="screen">
+            <h1>Game Over</h1>
+            <div id="player-result" class="player-result">Player's Result</div>
+            <div id="final-score" class="score">Your score: 0/0</div>
+            <button id="play-again-btn">Play Again</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
