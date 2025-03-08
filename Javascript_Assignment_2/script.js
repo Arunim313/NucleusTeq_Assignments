@@ -171,32 +171,27 @@ function startTimer() {
         if (timeLeft <= 0) {
             clearInterval(timer);
             if (selectedOption === null) {
-                // Time's up - check the answer
                 checkAnswer();
             }
         }
     }, 1000);
 }
 
-// End the game
 function endGame() {
     playerResult.textContent = `${playerName}'s Result`;
     finalScoreElement.textContent = `Your score: ${score}/${questions.length}`;
     changeScreen(gameScreen, endScreen);
 }
 
-// Reset the game
 function resetGame() {
     changeScreen(endScreen, startScreen);
 }
 
-// Helper function to change screens
 function changeScreen(from, to) {
     from.classList.remove('active');
     to.classList.add('active');
 }
 
-// Helper function to decode HTML entities
 function decodeHTML(html) {
     const textarea = document.createElement('textarea');
     textarea.innerHTML = html;
