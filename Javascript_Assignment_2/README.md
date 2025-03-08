@@ -10,18 +10,6 @@ A simple and interactive quiz game where players can test their knowledge across
 - Background images for each category and a home page.
 - Timer for each question to add excitement.
 
-## Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/QuizGame.git
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd QuizGame
-   ```
-3. Open `index.html` in your web browser.
-
 ## Usage
 
 1. Enter your name in the input field on the home page.
@@ -30,3 +18,8 @@ A simple and interactive quiz game where players can test their knowledge across
 4. Answer the questions by clicking on the options.
 5. Your score will be displayed on the screen.
 6. At the end of the game, you can choose to play again.
+
+## To play this game follow the steps below:
+
+1. Clone this repo git clone <repo name>
+2. cd repo and run index.html
