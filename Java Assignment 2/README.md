@@ -65,3 +65,4 @@ An employee management system built with **Spring Boot**, **Thymeleaf**, and **P
 2. **Employee Management:** Add, update, delete, and view employee information.
 3. **Logout:** Securely end the HR session by clicking "Logout".
 
+## Sample screenshots
