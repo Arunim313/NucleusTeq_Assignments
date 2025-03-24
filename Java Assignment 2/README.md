@@ -66,3 +66,5 @@ An employee management system built with **Spring Boot**, **Thymeleaf**, and **P
 3. **Logout:** Securely end the HR session by clicking "Logout".
 
 ## Sample screenshots
+[Login](assets/login.png)
+[Dashboard](assets/dashboard.png)
