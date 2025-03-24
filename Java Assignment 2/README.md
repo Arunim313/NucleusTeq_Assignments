@@ -35,7 +35,7 @@ An employee management system built with **Spring Boot**, **Thymeleaf**, and **P
        password VARCHAR(255) NOT NULL
    );
 
-   INSERT INTO hr (email, password) VALUES ('admin@example.com', 'password123');
+   INSERT INTO hr (email, password) VALUES ('manager@example.com', 'abcd1234');
    ```
 
 3. **Set up application properties:**
